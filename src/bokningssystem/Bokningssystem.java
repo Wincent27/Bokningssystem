@@ -1,5 +1,10 @@
     package bokningssystem;
 
+    /**
+ *
+ * @author wincent.nordlanderw
+ */
+    
 import java.util.Scanner;
 
 public class Bokningssystem {
