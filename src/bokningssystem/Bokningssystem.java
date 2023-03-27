@@ -1,17 +1,14 @@
-    
-package bokningssystem;
+    package bokningssystem;
 
-/**
- *
- * @author wincent.nordlanderw
- */
 import java.util.Scanner;
 
 public class Bokningssystem {
 
+    // Konstanter för maximalt antal passagerare och pris per plats.
     private static final int MAX_PASSAGERARE = 21;
     private static final double PRIS_PER_PLATS = 299.90;
 
+    // Två arrayer för att lagra passagerare och födelsedatum.
     private String[] passagerare = new String[MAX_PASSAGERARE];
     private int[] fodelsedatum = new int[MAX_PASSAGERARE];
 
@@ -20,6 +17,7 @@ public class Bokningssystem {
         Bokningssystem bokningssystem = new Bokningssystem();
 
         int val;
+        // En meny-loop som körs tills användaren väljer att avsluta programmet.
         do {
             val = bokningssystem.visaMeny(scanner);
             switch (val) {
@@ -40,6 +38,7 @@ public class Bokningssystem {
             }
         } while (val != 4);
     }
+
 
     private int visaMeny(Scanner scanner) {
         System.out.println("Välkommen till bokningssystemet!");
