@@ -45,24 +45,28 @@ public class Bokningssystem {
     }
 
 
+    // Metod som visar huvudmenyn och tar inmatning från användaren
     private int visaMeny(Scanner scanner) {
-        System.out.println("Välkommen till bokningssystemet!");
-        System.out.println("Välj ett alternativ:");
-        System.out.println("1. Lägga till en passagerare – boka en obokad plats");
-        System.out.println("2. Skriv ut hur många lediga platser det finns");
-        System.out.println("3. Beräkna vinsten av antalet sålda biljetter (" + PRIS_PER_PLATS + " kr/st)");
-        System.out.println("4. Avsluta programmet");
+        System.out.println("Välkommen till bokningssystemet!"); // Skriver ut välkomstmeddelande
+        System.out.println("Välj ett alternativ:"); // Skriver ut instruktion för att välja ett alternativ
+        System.out.println("1. Lägga till en passagerare – boka en obokad plats"); // Skriver ut alternativ 1
+        System.out.println("2. Skriv ut hur många lediga platser det finns"); // Skriver ut alternativ 2
+        System.out.println("3. Beräkna vinsten av antalet sålda biljetter (" + PRIS_PER_PLATS + " kr/st)"); // Skriver ut alternativ 3 med pris per plats
+        System.out.println("4. Avsluta programmet"); // Skriver ut alternativ 4 för att avsluta programmet
 
-        return scanner.nextInt();
+            return scanner.nextInt(); // Tar in användarens val
+}
+
+    // Metod för att lägga till en passagerare
+    private void laggTillPassagerare(Scanner scanner) {
+        int ledigaPlatser = MAX_PASSAGERARE - antalBokadePlatser(); // Beräknar antalet lediga platser
+        
+        if (ledigaPlatser == 0) { // Om det inte finns några lediga platser
+        System.out.println("Tyvärr finns det inga lediga platser kvar."); // Skriv ut meddelande om att det inte finns några lediga platser
+        return; // Returnera från metoden
     }
 
-    private void laggTillPassagerare(Scanner scanner) {
-        int ledigaPlatser = MAX_PASSAGERARE - antalBokadePlatser();
-        if (ledigaPlatser == 0) {
-            System.out.println("Tyvärr finns det inga lediga platser kvar.");
-            return;
-        }
-
+        // Bokar en ledig plats åt en passagerare
         System.out.println("Det finns " + ledigaPlatser + " lediga platser kvar.");
         int index = forstaLedigaPlatsIndex();
         System.out.print("Ange namn på passagerare: ");
@@ -74,37 +78,44 @@ public class Bokningssystem {
         System.out.println("Bokningen är klar. Tack för att du valde oss!");
     }
 
+    // Skriver ut antalet lediga platser
     private void skrivUtLedigaPlatser() {
         int ledigaPlatser = MAX_PASSAGERARE - antalBokadePlatser();
         System.out.println("Det finns " + ledigaPlatser + " lediga platser kvar.");
     }
 
+    // Räknar ut antalet sålda biljetter och vinsten
     private void raknaVinst() {
         int antalSåldaBiljetter = antalBokadePlatser();
         double vinst = antalSåldaBiljetter * PRIS_PER_PLATS;
         System.out.println("Antal sålda biljetter: " + antalSåldaBiljetter);
         System.out.println("Vinst: " + vinst + " kr");
 }
+    //Skriver ut avslutningsmeddelande när programmet avslutas.
     private void avslutaProgrammet() {
     System.out.println("Tack för besöket! Välkommen åter.");
 }
 
-private int antalBokadePlatser() {
-    int antal = 0;
-    for (int i = 0; i < passagerare.length; i++) {
-        if (passagerare[i] != null) {
+    //Räknar ut antalet bokade platser genom att iterera över passagerar-listan
+    //och räkna antalet icke-null platser.
+    private int antalBokadePlatser() {
+        int antal = 0;
+        for (int i = 0; i < passagerare.length; i++) {
+            if (passagerare[i] != null) {
             antal++;
         }
     }
     return antal;
 }
 
-private int forstaLedigaPlatsIndex() {
-    for (int i = 0; i < passagerare.length; i++) {
-        if (passagerare[i] == null) {
-            return i;
+    //Hittar indexet för den första obokade platsen genom att iterera över passagerar-listan
+    //och hitta den första positionen som är null.
+    private int forstaLedigaPlatsIndex() {
+        for (int i = 0; i < passagerare.length; i++) {
+            if (passagerare[i] == null) {
+                return i;
+            }
         }
-    }
     // Om det inte finns några null-värden (dvs. alla platser är bokade) så returneras -1.
     return -1;
     }
