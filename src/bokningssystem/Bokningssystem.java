@@ -56,6 +56,7 @@ public class Bokningssystem {
 
             return scanner.nextInt(); // Tar in användarens val
 }
+    
 
     // Metod för att lägga till en passagerare
     private void laggTillPassagerare(Scanner scanner) {
@@ -96,7 +97,7 @@ public class Bokningssystem {
     System.out.println("Tack för besöket! Välkommen åter.");
 }
 
-    //Räknar ut antalet bokade platser genom att iterera över passagerar-listan
+    //Räknar ut antalet bokade platser genom att upprepa över passagerar-listan
     //och räkna antalet icke-null platser.
     private int antalBokadePlatser() {
         int antal = 0;
@@ -108,7 +109,7 @@ public class Bokningssystem {
     return antal;
 }
 
-    //Hittar indexet för den första obokade platsen genom att iterera över passagerar-listan
+    //Hittar indexet för den första obokade platsen genom att upprepa över passagerar-listan
     //och hitta den första positionen som är null.
     private int forstaLedigaPlatsIndex() {
         for (int i = 0; i < passagerare.length; i++) {
